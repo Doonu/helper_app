@@ -1,7 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { processDirectory } from './lib/convertExcelToPdf'
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -53,3 +54,26 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+// Обработка события для выбора папок
+ipcMain.handle('select-folders', async () => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openDirectory']
+  })
+  return result.filePaths
+})
+
+ipcMain.handle('select-files', async () => {
+  const fileResult = await dialog.showOpenDialog({
+    properties: ['openFile', 'multiSelections']
+  })
+  return fileResult.filePaths
+})
+
+// Слушатель для обработки файлов
+ipcMain.handle(
+  'convert-excel-to-pdf',
+  async (_, inputDir: string, outputDir: string, picturePath: string) => {
+    await processDirectory(inputDir, outputDir, picturePath)
+  }
+)

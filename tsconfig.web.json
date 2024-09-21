@@ -11,9 +11,13 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@renderer/*": [
-        "src/renderer/src/*"
-      ]
+      "@app/*": ["./src/renderer/src/app/*"],
+      "@processes/*": ["./src/renderer/src/processes/*"],
+      "@pages/*": ["./src/renderer/src/pages/*"],
+      "@widgets/*": ["./src/renderer/src/widgets/*"],
+      "@features/*": ["./src/renderer/src/features/*"],
+      "@entities/*": ["./src/renderer/src/entities/*"],
+      "@shared/*": ["./src/renderer/src/shared/*"],
     }
   }
 }

@@ -1,12 +1,15 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-
-const api = {}
 
 if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld('electron', electronAPI)
-    contextBridge.exposeInMainWorld('api', api)
+    contextBridge.exposeInMainWorld('api', {
+      selectFolders: () => ipcRenderer.invoke('select-folders'),
+      selectFiles: () => ipcRenderer.invoke('select-files'),
+      convertedExcelToPdf: (inputDir: string, outputDir: string, picturePath: string) =>
+        ipcRenderer.invoke('convert-excel-to-pdf', inputDir, outputDir, picturePath)
+    })
   } catch (error) {
     console.error(error)
   }

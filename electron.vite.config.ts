@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin()],
+    assetsInclude: ['**/*.ttf', '**/*.woff', '**/*.woff2']
   },
   preload: {
     plugins: [externalizeDepsPlugin()]
@@ -12,7 +13,13 @@ export default defineConfig({
   renderer: {
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer/src')
+        '@app': resolve('src/renderer/src/app'),
+        '@processes': resolve('src/renderer/src/processes'),
+        '@pages': resolve('src/renderer/src/pages'),
+        '@widgets': resolve('src/renderer/src/widgets'),
+        '@features': resolve('src/renderer/src/features'),
+        '@entities': resolve('src/renderer/src/entities'),
+        '@shared': resolve('src/renderer/src/shared')
       }
     },
     plugins: [react()]
