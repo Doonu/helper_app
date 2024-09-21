@@ -59,9 +59,6 @@ async function generateDirectory(sheet, outputDir: string) {
   return folderPath
 }
 
-// Функция для конвертации Excel в PDF
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 async function convertExcelToPdf(inputFile: string, outputDir: string) {
   try {
     console.log(`Конвертация файла ${inputFile} в PDF...`)
@@ -91,6 +88,7 @@ async function convertExcelToPdf(inputFile: string, outputDir: string) {
     } else {
       console.error(`Неизвестная ошибка`)
     }
+    return
   }
 }
 
@@ -112,7 +110,6 @@ async function addMarginsToExistingPdf(pdfPath) {
   console.log(`Отступы добавлены в PDF: ${pdfPath}`)
 }
 
-// Основная функция для чтения файлов в директории и конвертации
 export async function processDirectory(inputDir: string, outputDir: string, picturePath: string) {
   try {
     const files = await fs.readdir(inputDir)

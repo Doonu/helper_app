@@ -1,4 +1,4 @@
-import { SButtonChoice, SChoice, SChoiceDirectory } from './choiceDirectory.styles'
+import { SButtonChoice, SButtonDelete, SChoice, SChoiceDirectory } from './choiceDirectory.styles'
 import { Dispatch, FC, SetStateAction } from 'react'
 import { STitle } from '../excelToPdf.styles'
 
@@ -37,7 +37,7 @@ export const ChoiceFileSystem: FC<ChoiceFileSystemProps> = ({
         {fileSystem && (
           <>
             <div>{fileSystem}</div>
-            {/*<SButtonDelete />*/}
+            <SButtonDelete onClick={handleChoice}>Изменить путь</SButtonDelete>
           </>
         )}
       </SChoice>
