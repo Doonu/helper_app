@@ -2,6 +2,9 @@ import { ThemeConfig } from 'antd'
 
 export const antdTheme: ThemeConfig = {
   components: {
-    Button: {}
+    Button: {},
+    Menu: {
+      itemBg: 'transparent'
+    }
   }
 }

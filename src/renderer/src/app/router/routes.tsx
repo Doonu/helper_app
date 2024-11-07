@@ -1,6 +1,9 @@
+import { ExcelToPdf } from '@pages/ExcelToPdf'
+import { Routes } from '@shared/config'
+import { Books } from '@pages/Books'
+
 import { createHashRouter } from 'react-router-dom'
 import { Layout } from '../layout'
-import { ExcelToPdf } from '@pages/ExcelToPdf'
 
 export const routes = createHashRouter([
   {
@@ -8,8 +11,12 @@ export const routes = createHashRouter([
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: Routes.excelToPdf,
         element: <ExcelToPdf />
+      },
+      {
+        path: Routes.books,
+        element: <Books />
       }
     ]
   }

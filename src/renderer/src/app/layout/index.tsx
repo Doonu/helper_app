@@ -1,10 +1,14 @@
-import { SLayout } from './layout.styles'
+import { SContainer, SLayout } from './layout.styles'
 import { Outlet } from 'react-router-dom'
+import { Menu } from '@features/Menu'
 
 export const Layout = () => {
   return (
     <SLayout>
-      <Outlet />
+      <Menu />
+      <SContainer>
+        <Outlet />
+      </SContainer>
     </SLayout>
   )
 }
